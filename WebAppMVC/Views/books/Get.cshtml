@@ -1,0 +1,52 @@
+﻿@model IEnumerable<webApi5.Model.books>
+
+@{
+    ViewData["Title"] = "Get";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+    background-color:darkslateblue;
+    }
+</style>
+
+<center><h1>All Books</h1></center>
+
+
+
+<form asp-action="Search">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-7">
+            <input type="search" placeholder="Search By Zoner OR Book Name"name="searchString" class="form-control"/>
+        </div>
+        <div class="col-md-1">
+            <input type="submit" value="Search" class="btn btn-warning"/>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</form><br />
+<div class="row">
+    
+@foreach(var item in Model)
+{
+       
+
+            <div class="col-sm-3">
+                <div class="card" style="width: 18rem;">
+                     <img class="card-img-top" src="https://m.media-amazon.com/images/I/51jeQjwHzNL.jpg" alt="Card image cap">
+                     <div class="card-body">
+                     <h6  class="card-title">@Html.DisplayNameFor(model => model.BookName): @Html.DisplayFor(modelitem => item.BookName)</h6>
+                      <h6 class="card-title">@Html.DisplayNameFor(model => model.Zoner): @Html.DisplayFor(modelitem => item.Zoner)</h6>
+                      <h6 class="card-title">@Html.DisplayNameFor(model => model.BookCost): @Html.DisplayFor(modelitem => item.BookCost)</h6>
+                      
+                       <a asp-action="AddToCart"  asp-route-id="@item.bookID" class="btn btn-success" >AddToCart</a> 
+                      <a asp-action="description"  asp-route-id="@item.bookID" class="btn btn-primary">Description</a>
+
+                       
+                     </div>
+                 </div> 
+                 
+            </div>
+            }
+            </div>

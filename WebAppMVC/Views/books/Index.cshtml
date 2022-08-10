@@ -1,0 +1,52 @@
+﻿@model IEnumerable<webApi5.Model.books>
+
+@{
+    ViewData["Title"] = "Get";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+    background-color:greenyellow;
+    }
+</style>
+
+<center><h1>Admin</h1></center>
+
+
+
+<form asp-action="Search">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-7">
+            <input type="search" name="searchString" class="form-control"/>
+        </div>
+        <div class="col-md-1">
+            <input type="submit" value="Search" class="btn btn-warning"/>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</form><a asp-action="Create"class="btn btn-primary btn-lg btn-block">Add New Book</a><br />
+<div class="row">
+@foreach(var item in Model)
+
+{
+       
+
+            <div class="col-sm-3">
+                <div class="card" style="width: 18rem;">
+                     <img class="card-img-top" src="https://5.imimg.com/data5/SELLER/Default/2021/1/IX/WW/VM/121195497/nagas-1--500x500.jpg" alt="Card image cap">
+                     <div class="card-body">
+                      <h6  class="card-title">@Html.DisplayNameFor(model => model.BookName): @Html.DisplayFor(modelitem => item.BookName)</h6>
+                      <h6 class="card-title">@Html.DisplayNameFor(model => model.Zoner): @Html.DisplayFor(modelitem => item.Zoner)</h6>
+                      <h6 class="card-title">@Html.DisplayNameFor(model => model.BookCost): @Html.DisplayFor(modelitem => item.BookCost)</h6>
+                      
+                       
+                       <a asp-action="Update"  asp-route-id="@item.bookID" class="btn btn-info">Edit</a>
+                        <a asp-action="Delete"  asp
+                        -route-id="@item.bookID" class="btn btn-danger">Delete</a>
+                     </div>
+                 </div> 
+                 
+            </div>
+            }
+            </div>
